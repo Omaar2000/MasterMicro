@@ -330,10 +330,10 @@ public :
            NMOS m1(id, type, netlist, lastComp);
            nmos.push_back(m1);
             }
-            Topology top(topId, res, nmos);
-            Topologies.push_back(top);
-
+            
         }
+        Topology top(topId, res, nmos);
+        Topologies.push_back(top);
   }
     void addTop(Topology top)
     {
@@ -365,7 +365,7 @@ public :
     void deleteTopology(string TopID)
     {
         int s = Topologies.size();
-        for(auto i = Topologies.begin(); i != Topologies.end(); i++)
+        for(auto i = Topologies.begin(); i < Topologies.end(); i++)
             if(i->getID() == TopID)
             Topologies.erase(i);
 
@@ -405,7 +405,7 @@ public :
 int main()
 {
     Api app;
-    app.readJSON();
+    
     map<string,string> lastComp;
     map<string,string> netlist;
     vector<resistance> resistors;
@@ -436,8 +436,13 @@ int main()
     Topology top("top2", resistors, m1);
     // cout << top.getID()<<endl;
     app.addTop(top);
+    app.readJSON();
     //app.writeJSON("top2");
-    app.queryDevices("top1");
+    // app.queryDevices("top1");
+        // app.getTopologies();
+
+    // app.deleteTopology("top1");
+    app.queryDevicesWithNetlistNode("top1","t1");
     app.getTopologies();
 //    vector<NMOS> nmos;
 //    vector<resistance> resistor;
