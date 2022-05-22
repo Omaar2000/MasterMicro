@@ -8,7 +8,7 @@
 // #include <json/value.h>
 #include <fstream>
 #include "json.hpp"
-//#include <nlohmann/json.hpp>
+// #include <nlohmann/json.hpp>
 // #include <boostpropertytreejsonparserdetailread.hpp>
 // #include <boost/property_tree/ptree.hpp>
 
@@ -380,20 +380,20 @@ public :
                 i->printDevices(TopID);
                 break;
             }
-            if (i == Topologies.end())
+            if (i == Topologies.end()-1)
             cout <<"element not found! "<<endl;
             }
     }
     void queryDevicesWithNetlistNode(string TopID, string NetID)
     {
-        for(auto i = Topologies.begin(); i != Topologies.end(); i++)
+        for(vector<Topology>::iterator i = Topologies.begin(); i < Topologies.end(); i++)
            {
                if(i->getID() == TopID )
             {
                 i->queryDevicesWithNetlistNode(NetID);
                 break;
             }
-            if (i == Topologies.end())
+            if (i == Topologies.end()-1)
             cout <<"element not found! "<<endl;
             }
     }
@@ -433,16 +433,22 @@ int main()
 
     NMOS nmos1("m2", "nmos", netlist, lastComp);
     m1.push_back(nmos1);
-    Topology top("top2", resistors, m1);
+    Topology top2("top2", resistors, m1);
+    Topology top3("top3", resistors, m1);
+    Topology top4("top4", resistors, m1);
+    Topology top5("top5", resistors, m1);
     // cout << top.getID()<<endl;
-    app.addTop(top);
+    app.addTop(top2);
+    app.addTop(top3);
+    app.addTop(top4);
+    app.addTop(top5);
     app.readJSON();
     //app.writeJSON("top2");
     // app.queryDevices("top1");
         // app.getTopologies();
 
-    // app.deleteTopology("top1");
-    app.queryDevicesWithNetlistNode("top1","t1");
+    app.deleteTopology("top1");
+    app.queryDevices("top1");
     app.getTopologies();
 //    vector<NMOS> nmos;
 //    vector<resistance> resistor;
