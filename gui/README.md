@@ -1,4 +1,4 @@
-# function-plotter-
+# FunctionPlotter
 
 A simple GUI app to plot a user-entered function built using Tkinter, Python
 
