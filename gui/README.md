@@ -1,6 +1,6 @@
 # function-plotter-
 
-master micro intern task1: an interactive function plotter built using Tkinter, Python
+A simple GUI app to plot a user-entered function built using Tkinter, Python
 
 ##  RUN <a name = "Install"></a>
 
